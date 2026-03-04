@@ -2,7 +2,7 @@
 - name: My first Hello World playbook for Jenkins
   hosts: localhost
   connection: local   # Important: runs on the same machine (Jenkins container)
-  gather_facts: false
+  gather_facts: true
 
   tasks:
     - name: Print a friendly message
