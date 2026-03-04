@@ -1,0 +1,23 @@
+---
+- name: My first Hello World playbook for Jenkins
+  hosts: localhost
+  connection: local   # Important: runs on the same machine (Jenkins container)
+  gather_facts: false
+
+  tasks:
+    - name: Print a friendly message
+      debug:
+        msg: "Hello from my own Ansible repo! Running in Jenkins on Mac via Docker 🚀"
+
+    - name: Create a test file to prove it worked
+      copy:
+        content: "Jenkins successfully ran my playbook!\nDate: {{ ansible_date_time.date }}\n"
+        dest: /tmp/my-ansible-success.txt
+
+    - name: Show current uptime (just for fun)
+      command: uptime
+      register: uptime_result
+
+    - name: Display uptime
+      debug:
+        var: uptime_result.stdout
